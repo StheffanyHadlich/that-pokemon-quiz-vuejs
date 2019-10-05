@@ -3,11 +3,13 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col sm="6" offset="3">
-           <Quiz :options="options" :rightAnswer="rightAnswer" />
+          <Quiz
+            :options="options"
+            :rightAnswer="rightAnswer"
+          />
         </b-col>
       </b-row>
     </b-container>
-
   </div>
 </template>
 
@@ -20,18 +22,19 @@ export default {
   components: {
     Quiz
   },
-  data: function () {
+  data: function() {
     return {
       options: [],
-      rightAnswer: {}
-    }
+      rightAnswer: {},
+
+    };
   },
-  mounted: function () {
+  mounted: function() {
     PokemonModel.getPokemons()
-    .then( value => {
+    .then(value => {
       this.options = value.options,
-      this.rightAnswer = value.rightAnswer
-    })
+      this.rightAnswer = value.rightAnswer;
+    });
   }
 };
 </script>

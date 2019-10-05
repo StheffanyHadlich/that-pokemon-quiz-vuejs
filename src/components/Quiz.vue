@@ -3,8 +3,8 @@
     <b-jumbotron>
       <div>
         <h3>Who's That Pokémon?</h3>
-        <div>
-          <img alt="Guess this pokemon" :src="rightAnswer.img" />
+        <div class="quiz-img">
+          <img alt="" :src="rightAnswer.img" />
         </div>
       </div>
       <hr class="my-4" />
@@ -44,3 +44,22 @@ export default {
   }
 };
 </script>
+
+<style>
+  .quiz-img {
+    background-image: url('../../src/assets/bg.png');
+    background-image: url(/img/bg.6ce8749a.png);
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+  }
+
+  .quiz-img img {
+    border-style: none;
+    height: 120px;
+    -webkit-filter: brightness(0) blur(0.8px);
+    filter: brightness(0) blur(0.8px);
+  }
+</style>

@@ -1,6 +1,9 @@
 <template>
   <div class="quiz-container">
     <b-jumbotron>
+      <h2>
+        <b-badge>Score: {{score}}</b-badge>
+      </h2>
       <div>
         <h3>Who's That Pokémon?</h3>
         <div class="quiz-img">
@@ -26,7 +29,7 @@
           <strong>{{ selected }}</strong>
         </div>
       </div>
-      <b-button variant="success" href="#">Ok</b-button>
+      <b-button variant="success" href="#" @click="checkAnswer">Ok</b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -39,8 +42,16 @@ export default {
   },
   data() {
     return {
+      score: 0,
       selected: ""
     };
+  },
+  methods: {
+    checkAnswer: function() {
+      if(this.rightAnswer.name === this.selected){
+        return this.score++;
+      }
+    }
   }
 };
 </script>

@@ -1,4 +1,4 @@
-# pokemon-store
+# that-pokemon-quiz
 
 ## Project setup
 ```

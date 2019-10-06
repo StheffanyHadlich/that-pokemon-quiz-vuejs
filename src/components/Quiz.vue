@@ -1,9 +1,6 @@
 <template>
-  <div class="quiz-container">
-    <b-jumbotron>
-      <h2>
-        <b-badge>Score: {{score}}</b-badge>
-      </h2>
+  <div>
+    <b-jumbotron class="quiz-container">
       <div>
         <h3>Who's That Pokémon?</h3>
         <div class="quiz-img">
@@ -17,29 +14,24 @@
             v-for="option in options"
             :key="option"
             @change="onChange"
-            name="some-radios"
+            name="pokemon-options"
             :value="option"
           >
             {{option}}
           </b-form-radio>
         </b-form-group>
-
-        <div class="mt-3">
-          Selected:
-          <strong>{{ selected }}</strong>
-        </div>
       </div>
-      <b-button variant="success" href="#" @click="checkAnswer">Ok</b-button>
+      <b-button right-align pill variant="success" href="#" @click="checkAnswer">Ok</b-button>
     </b-jumbotron>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     rightAnswer: Object,
     options: Array,
-    selected: String,
     score: Number,
     checkAnswer: Function,
     onChange: Function
@@ -51,6 +43,10 @@ export default {
 </script>
 
 <style>
+  .quiz-container {
+    padding: 2em 5em;
+  }
+
   .quiz-img {
     background-image: url('../../src/assets/bg.png');
     background-image: url(/img/bg.6ce8749a.png);

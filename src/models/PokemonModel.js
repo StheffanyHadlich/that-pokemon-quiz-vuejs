@@ -1,8 +1,12 @@
-import * as PokemonService from '../service/PokemonService'
+import * as PokemonService from '../service/PokemonService';
+
+import chunk from 'lodash.chunk';
 
 export const getPokemons = async () => {
   const pokemons = await PokemonService.get();
-   return await mountQuestion(pokemons.results);
+  const consult = await mountQuiz(pokemons.results);
+  console.log(consult)
+  return consult;
 }
 
 export const getPokemon = async (url) => {
@@ -10,12 +14,14 @@ export const getPokemon = async (url) => {
   return pokemon;
 }
 
+const mountQuiz = async results => await Promise.all(separateQuestion(results).map((pokemons) => mountQuestion(pokemons)));
 
 const mountQuestion = async pokemons => {
   return {
     rightAnswer: await pickAnswer(pokemons),
     options: pokemons.map(item => item.name)
   }
+
 }
 
 const pickAnswer = async pokemons => {
@@ -23,6 +29,8 @@ const pickAnswer = async pokemons => {
   const pokemon = await getPokemon(pokemons[index].url);
   return mountRightAnswer(pokemon, pokemons[index].name);
 }
+
+const separateQuestion = results => chunk(results, 4);
 
 const mountRightAnswer = (pokemon, name) => {
   return {

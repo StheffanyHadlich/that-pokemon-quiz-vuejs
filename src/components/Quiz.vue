@@ -16,7 +16,7 @@
           <b-form-radio
             v-for="option in options"
             :key="option"
-            v-model="selected"
+            @change="onChange"
             name="some-radios"
             :value="option"
           >
@@ -38,20 +38,14 @@
 export default {
   props: {
     rightAnswer: Object,
-    options: Array
+    options: Array,
+    selected: String,
+    score: Number,
+    checkAnswer: Function,
+    onChange: Function
   },
-  data() {
-    return {
-      score: 0,
-      selected: ""
-    };
-  },
-  methods: {
-    checkAnswer: function() {
-      if(this.rightAnswer.name === this.selected){
-        return this.score++;
-      }
-    }
+  computed: {
+
   }
 };
 </script>

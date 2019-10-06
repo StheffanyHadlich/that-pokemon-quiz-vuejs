@@ -4,8 +4,14 @@
       <b-row>
         <b-col sm="6" offset="3">
           <Quiz
-            :options="options"
-            :rightAnswer="rightAnswer"
+            v-if="questions.length"
+            v-model="index"
+            :options="questions[index].options"
+            :rightAnswer="questions[index].rightAnswer"
+            :score="score"
+            :selected="selected"
+            :checkAnswer="checkAnswer"
+            :onChange="onChange"
           />
         </b-col>
       </b-row>
@@ -24,17 +30,28 @@ export default {
   },
   data: function() {
     return {
-      options: [],
-      rightAnswer: {},
-
+      questions: [],
+      index: 0,
+      score: 0,
+      selected: "",
     };
   },
   mounted: function() {
     PokemonModel.getPokemons()
-    .then(value => {
-      this.options = value.options,
-      this.rightAnswer = value.rightAnswer;
+    .then(questions => {
+      this.questions = questions;
     });
+  },
+  methods: {
+    checkAnswer: function() {
+      if(this.questions[this.index].rightAnswer.name === this.selected){
+        this.index++;
+        this.score++;
+      }
+    },
+    onChange: function(value) {
+      this.selected= value
+    }
   }
 };
 </script>

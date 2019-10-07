@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const get = async () => {
-  const result = await axios.get('https://pokeapi.co/api/v2/pokemon');
+  const result = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=25');
   return result.data;
 };
 

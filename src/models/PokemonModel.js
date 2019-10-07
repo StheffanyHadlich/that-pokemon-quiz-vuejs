@@ -2,10 +2,12 @@ import * as PokemonService from '../service/PokemonService';
 
 import chunk from 'lodash.chunk';
 
+const NUMBER_OF_QUESTIONS = 5;
+
 export const getPokemons = async () => {
   const pokemons = await PokemonService.get();
   const consult = await mountQuiz(pokemons.results);
-  console.log(consult)
+  console.log(consult);
   return consult;
 }
 
@@ -30,11 +32,20 @@ const pickAnswer = async pokemons => {
   return mountRightAnswer(pokemon, pokemons[index].name);
 }
 
-const separateQuestion = results => chunk(results, 4);
+
+const separateQuestion = results => chunk(results, NUMBER_OF_QUESTIONS);
 
 const mountRightAnswer = (pokemon, name) => {
   return {
     name: name,
-    img: pokemon.sprites.front_default
+    img: isThatPikachu(name) || pokemon.sprites.front_default
   }
+}
+
+const isThatPikachu = name => name === 'pikachu' ? PIKAPERICLES.img : false
+
+
+const PIKAPERICLES = {
+  name: 'Pikapericles',
+  img: 'https://i.imgur.com/aKeLU4h.png'
 }

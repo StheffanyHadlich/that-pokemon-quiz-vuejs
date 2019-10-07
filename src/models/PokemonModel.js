@@ -7,7 +7,6 @@ const NUMBER_OF_QUESTIONS = 5;
 export const getPokemons = async () => {
   const pokemons = await PokemonService.get();
   const consult = await mountQuiz(pokemons.results);
-  console.log(consult);
   return consult;
 }
 

@@ -25,8 +25,9 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 import Quiz from "./components/Quiz.vue";
-import * as PokemonModel from "./models/PokemonModel";
 import Header from "./components/Header.vue";
 
 export default {
@@ -35,51 +36,27 @@ export default {
     Quiz,
     Header
   },
-  data: function() {
-    return {
-      questions: [],
-      index: 0,
-      score: 0,
-      selected: "",
-      total: 0,
-      show: false,
-      isCorrect: false,
-    };
+  computed: {
+    ...mapGetters([
+      'questions',
+      'index',
+      'score',
+      'selected',
+      'total',
+      'show',
+      'isCorrect',
+    ])
   },
-  mounted: function() {
-    PokemonModel.getPokemons().then(questions => {
-      this.questions = questions;
-      this.total = questions.length;
-    });
+  created: async function() {
+    await this.getPokemons();
   },
   methods: {
-    checkAnswer: function() {
-      this.updateScore();
-      this.toggleAnswer();
-    },
-    toggleAnswer: function() {
-      this.show = !this.show;
-    },
-    clickNext: function() {
-      this.updateIndex();
-      this.toggleAnswer();
-    },
-    updateIndex: function() {
-      if(this.index < this.total - 1){
-        this.isCorrect = null
-        return this.index++
-      }
-    },
-    updateScore: function () {
-      if(this.questions[this.index].rightAnswer.name == this.selected){
-        this.isCorrect = true;
-        return this.score++;
-      }
-      return this.isCorrect = false;
-    },
-    onChange: function(value) {
-      this.selected = value;
-    }
+    ...mapActions([
+        'getPokemons',
+        'checkAnswer',
+        'clickNext',
+        'onChange'
+      ]),
   }
 };
 </script>

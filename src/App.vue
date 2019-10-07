@@ -12,8 +12,11 @@
             :options="questions[index].options"
             :rightAnswer="questions[index].rightAnswer"
             :score="score"
+            :show="show"
+            :isCorrect="isCorrect"
             :checkAnswer="checkAnswer"
             :onChange="onChange"
+            :clickNext="clickNext"
           />
         </b-col>
       </b-row>
@@ -39,6 +42,8 @@ export default {
       score: 0,
       selected: "",
       total: 0,
+      show: false,
+      isCorrect: false,
     };
   },
   mounted: function() {
@@ -50,17 +55,27 @@ export default {
   methods: {
     checkAnswer: function() {
       this.updateScore();
+      this.toggleAnswer();
+    },
+    toggleAnswer: function() {
+      this.show = !this.show;
+    },
+    clickNext: function() {
       this.updateIndex();
+      this.toggleAnswer();
     },
     updateIndex: function() {
-      if(this.index < this.total - 1)
+      if(this.index < this.total - 1){
+        this.isCorrect = null
         return this.index++
+      }
     },
     updateScore: function () {
-      console.log(this.questions[this.index].rightAnswer.name, this.selected)
       if(this.questions[this.index].rightAnswer.name == this.selected){
+        this.isCorrect = true;
         return this.score++;
       }
+      return this.isCorrect = false;
     },
     onChange: function(value) {
       this.selected = value;

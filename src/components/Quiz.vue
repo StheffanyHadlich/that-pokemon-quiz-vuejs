@@ -4,7 +4,7 @@
       <div>
         <h3>Who's That Pokémon?</h3>
         <div class="quiz-img">
-          <img alt="" :src="rightAnswer.img" />
+          <img alt="" :src="rightAnswer.img" :class="show? 'show-pokemon' : 'hide-pokemon'"/>
         </div>
       </div>
       <hr class="my-4" />
@@ -16,12 +16,17 @@
             @change="onChange"
             name="pokemon-options"
             :value="option"
+            :class="[ 
+              isSelected(option) && show && isCorrect ? 'right-answer' :  
+              isSelected(option) && show && !isCorrect ? 'wrong-answer' : '' 
+            ]"
           >
             {{option}}
           </b-form-radio>
         </b-form-group>
       </div>
-      <b-button right-align pill variant="success" href="#" @click="checkAnswer">Ok</b-button>
+      <b-button right-align pill variant="success" href="#" :disabled="show" @click="checkAnswer">Ok</b-button>
+      <b-button right-align pill variant="info" href="#" :disabled="!show" @click="clickNext">Next</b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -34,10 +39,15 @@ export default {
     options: Array,
     score: Number,
     checkAnswer: Function,
-    onChange: Function
+    show: Boolean,
+    isCorrect: Boolean,
+    onChange: Function,
+    clickNext: Function
   },
-  computed: {
-
+  methods: {
+    isSelected: function (value) {
+      return this.rightAnswer.name === value  
+    }
   }
 };
 </script>
@@ -57,10 +67,22 @@ export default {
     align-items: center;
   }
 
-  .quiz-img img {
-    border-style: none;
+  .hide-pokemon {
     height: 120px;
     -webkit-filter: brightness(0) blur(0.8px);
     filter: brightness(0) blur(0.8px);
   }
+
+  .show-pokemon {
+    height: 120px;
+  }
+
+  .right-answer {
+    color: green
+  }
+
+  .wrong-answer {
+    color: red
+  }
+
 </style>

@@ -31,7 +31,7 @@ import Questions from "../components/Questions.vue";
 import Header from "../components/Header.vue";
 
 export default {
-  name: "app",
+  name: "quiz",
   components: {
     Questions,
     Header

@@ -3,5 +3,6 @@ export default {
   TOGGLE_ANSWER: 'toggleAnswer',
   UPDATE_INDEX: 'updateIndex',
   UPDATE_SCORE: 'updateScore',
-  ON_CHANGE: 'onChange'
+  ON_CHANGE: 'onChange',
+  REDIRECT_TO: 'redirectTo'
 }

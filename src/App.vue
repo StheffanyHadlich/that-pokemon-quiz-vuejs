@@ -1,63 +1,12 @@
 <template>
   <div id="app">
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col sm="4">
-          <Header v-if="questions.length" :index="index" :score="score" :total="total" />
-        </b-col>
-        <b-col sm="5">
-          <Quiz
-            v-if="questions.length"
-            v-model="index"
-            :options="questions[index].options"
-            :rightAnswer="questions[index].rightAnswer"
-            :score="score"
-            :show="show"
-            :isCorrect="isCorrect"
-            :checkAnswer="checkAnswer"
-            :onChange="onChange"
-            :clickNext="clickNext"
-          />
-        </b-col>
-      </b-row>
-    </b-container>
+    <router-view />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-
-import Quiz from "./components/Quiz.vue";
-import Header from "./components/Header.vue";
-
 export default {
   name: "app",
-  components: {
-    Quiz,
-    Header
-  },
-  computed: {
-    ...mapGetters([
-      'questions',
-      'index',
-      'score',
-      'selected',
-      'total',
-      'show',
-      'isCorrect',
-    ])
-  },
-  created: async function() {
-    await this.getPokemons();
-  },
-  methods: {
-    ...mapActions([
-        'getPokemons',
-        'checkAnswer',
-        'clickNext',
-        'onChange'
-      ]),
-  }
 };
 </script>
 

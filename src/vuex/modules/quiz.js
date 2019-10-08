@@ -1,8 +1,18 @@
 import mutationstypes from '../mutation-types.js'
 import router from '../../router';
 
+const initialState = {
+  questions: [],
+  index: 0,
+  score: 0,
+  selected: "",
+  total: 0,
+  show: false,
+  isCorrect: false,
+}
+
 const mutations = {
-  [mutationstypes.SET_QUESTIONS](state, data){
+  [mutationstypes.SET_QUESTIONS](state, data) {
     state.questions = data;
     state.total = data.length;
   },
@@ -10,7 +20,7 @@ const mutations = {
     state.show = !state.show;
   },
   [mutationstypes.UPDATE_INDEX](state) {
-    if(state.index < state.total - 1){
+    if (state.index < state.total - 1) {
       state.isCorrect = null
       return state.index++
     } else {
@@ -18,7 +28,7 @@ const mutations = {
     }
   },
   [mutationstypes.UPDATE_SCORE](state) {
-    if(state.questions[state.index].rightAnswer.name == state.selected){
+    if (state.questions[state.index].rightAnswer.name == state.selected) {
       state.isCorrect = true;
       return state.score++;
     }
@@ -27,8 +37,13 @@ const mutations = {
   [mutationstypes.ON_CHANGE](state, data) {
     state.selected = data;
   },
-  [mutationstypes.REDIRECT_TO](state, data) {
-    router.push(data);
+  [mutationstypes.REDIRECT_TO_HOME]() {
+    router.push('/');
+  },
+  [mutationstypes.RESET_STORE](state) {
+    Object.keys(initialState).forEach(key => {
+      state[key] = initialState[key]
+    });
   }
 };
 

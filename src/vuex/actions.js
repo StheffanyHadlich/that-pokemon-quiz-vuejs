@@ -18,10 +18,11 @@ export const clickNext = ({commit}) => {
 }
 
 export const onChange = ({commit}, value) => {
-  commit(mutations.ON_CHANGE, value)
+  commit(mutations.ON_CHANGE, value);
 }
 
-export const redirectTo = ({commit}, value) => {
-  commit(mutations.REDIRECT_TO, value)
+export const redirectToHome = async ({commit}) => {
+  await commit(mutations.RESET_STORE);
+  commit(mutations.REDIRECT_TO_HOME);
 }
 

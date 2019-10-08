@@ -18,7 +18,7 @@
             </p>
             <p></p>
             <div>
-              <b-button pill variant="warning" @click="redirectTo('/')">Play again</b-button>
+              <b-button pill variant="warning" @click="redirectToHome">Play again</b-button>
             </div>
           </b-jumbotron>
         </b-col>
@@ -36,7 +36,7 @@ export default {
     ...mapGetters(["score", "total"])
   },
   methods: {
-    ...mapActions(["redirectTo"])
+    ...mapActions(["redirectToHome"])
   }
 };
 </script>

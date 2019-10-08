@@ -4,5 +4,6 @@ export default {
   UPDATE_INDEX: 'updateIndex',
   UPDATE_SCORE: 'updateScore',
   ON_CHANGE: 'onChange',
-  REDIRECT_TO: 'redirectTo'
+  REDIRECT_TO_HOME: 'redirectToHome',
+  RESET_STORE: 'resetStore'
 }

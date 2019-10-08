@@ -1,4 +1,5 @@
 import mutationstypes from '../mutation-types.js'
+import router from '../../router';
 
 const mutations = {
   [mutationstypes.SET_QUESTIONS](state, data){
@@ -12,6 +13,8 @@ const mutations = {
     if(state.index < state.total - 1){
       state.isCorrect = null
       return state.index++
+    } else {
+      router.push('/endgame');
     }
   },
   [mutationstypes.UPDATE_SCORE](state) {
@@ -23,6 +26,9 @@ const mutations = {
   },
   [mutationstypes.ON_CHANGE](state, data) {
     state.selected = data;
+  },
+  [mutationstypes.REDIRECT_TO](state, data) {
+    router.push(data);
   }
 };
 

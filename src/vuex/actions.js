@@ -21,3 +21,7 @@ export const onChange = ({commit}, value) => {
   commit(mutations.ON_CHANGE, value)
 }
 
+export const redirectTo = ({commit}, value) => {
+  commit(mutations.REDIRECT_TO, value)
+}
+

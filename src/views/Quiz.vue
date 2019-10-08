@@ -17,6 +17,7 @@
             :checkAnswer="checkAnswer"
             :onChange="onChange"
             :clickNext="clickNext"
+            :loading="loading"
           />
         </b-col>
       </b-row>
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 
 import Questions from "../components/Questions.vue";
 import Header from "../components/Header.vue";
@@ -36,27 +37,28 @@ export default {
     Questions,
     Header
   },
+  data() {
+    return {
+      loading: true,
+    };
+  },
   computed: {
     ...mapGetters([
-      'questions',
-      'index',
-      'score',
-      'selected',
-      'total',
-      'show',
-      'isCorrect',
+      "questions",
+      "index",
+      "score",
+      "selected",
+      "total",
+      "show",
+      "isCorrect"
     ])
   },
   created: async function() {
     await this.getPokemons();
+    this.loading = false;
   },
   methods: {
-    ...mapActions([
-        'getPokemons',
-        'checkAnswer',
-        'clickNext',
-        'onChange'
-      ]),
+    ...mapActions(["getPokemons", "checkAnswer", "clickNext", "onChange"])
   }
 };
 </script>

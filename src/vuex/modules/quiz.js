@@ -4,7 +4,7 @@ import router from '../../router';
 const initialState = {
   questions: [],
   results: [],
-  name: 'Ash',
+  name: null,
   index: 0,
   score: 0,
   selected: "",
@@ -45,13 +45,16 @@ const mutations = {
   },
   [mutationstypes.SET_RESULTS](state, data) {
     state.results = data;
+  },
+  [mutationstypes.SET_NAME](state, data) {
+    state.name = data;
   }
 };
 
 const state = {
   questions: [],
   results: [],
-  name: 'Ash',
+  name: null,
   index: 0,
   score: 0,
   selected: "",

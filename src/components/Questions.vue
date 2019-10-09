@@ -37,7 +37,10 @@
 </template>
 
 <script>
-import * as PokemonModel from '../models/PokemonModel'
+import * as PokemonModel from '../models/PokemonModel';
+import * as ResultsModel from '../models/ResultsModel';
+import router from '../router';
+
 export default {
   props: {
     rightAnswer: Object,
@@ -51,22 +54,19 @@ export default {
     isCorrect: Boolean,
     loading: Boolean,
     onChange: Function,
-    clickNext: Function,
-    saveResult: Function
+    clickNext: Function
   },
   methods: {
     isSelected: function(value) {
       return this.rightAnswer.name === value;
     },
     onClick: function() {
-      return PokemonModel.isLastIndex(this.index, this.total) ? this.clickNext() : this.saveResult(this.userData())
+      return PokemonModel.isLastIndex(this.index, this.total) ? this.clickNext() : this.saveResult()
     },
-    userData: function() {
-        return {
-          name: this.name,
-          score:this.score
-        }
-      }
+    saveResult: async function(){
+      await ResultsModel.save(this.name, this.score);
+      router.push('/endgame');
+    },
   }
 };
 </script>

@@ -21,7 +21,6 @@
             :onChange="onChange"
             :clickNext="clickNext"
             :loading="loading"
-            :saveResult="saveResult"
           />
         </b-col>
       </b-row>
@@ -63,7 +62,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    ...mapActions(["getPokemons", "checkAnswer", "clickNext", "onChange", "saveResult"])
+    ...mapActions(["getPokemons", "checkAnswer", "clickNext", "onChange"])
   }
 };
 </script>

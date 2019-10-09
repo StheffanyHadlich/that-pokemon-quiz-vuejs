@@ -9,6 +9,11 @@
       "name": "James",
       "id": 2,
       "score": 4
+    },
+    {
+      "name": "tefa",
+      "score": 4,
+      "id": 3
     }
   ]
 }

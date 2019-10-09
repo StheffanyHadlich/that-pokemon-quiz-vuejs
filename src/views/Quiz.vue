@@ -3,7 +3,7 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col sm="4">
-          <Header v-if="questions.length" :index="index" :score="score" :total="total" />
+          <Header v-if="questions.length" :index="index" :score="score" :total="total" :name="name" />
         </b-col>
         <b-col sm="5">
           <Questions

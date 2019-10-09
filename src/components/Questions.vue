@@ -30,16 +30,27 @@
           >{{option}}</b-form-radio>
         </b-form-group>
       </div>
-      <b-button right-align pill variant="success" href="#" :disabled="show" @click="checkAnswer">Ok</b-button>
-      <b-button right-align pill variant="info" href="#" :disabled="!show" @click="onClick">Next</b-button>
+      <div class="actions">
+        <b-button
+          right-align
+          pill
+          variant="success"
+          href="#"
+          :disabled="show"
+          @click="checkAnswer"
+        >
+          Ok
+        </b-button>
+        <b-button right-align pill variant="info" href="#" :disabled="!show" @click="onClick">Next</b-button>
+      </div>
     </b-jumbotron>
   </div>
 </template>
 
 <script>
-import * as PokemonModel from '../models/PokemonModel';
-import * as ResultsModel from '../models/ResultsModel';
-import router from '../router';
+import * as PokemonModel from "../models/PokemonModel";
+import * as ResultsModel from "../models/ResultsModel";
+import router from "../router";
 
 export default {
   props: {
@@ -61,12 +72,14 @@ export default {
       return this.rightAnswer.name === value;
     },
     onClick: function() {
-      return PokemonModel.isLastIndex(this.index, this.total) ? this.clickNext() : this.saveResult()
+      return PokemonModel.isLastIndex(this.index, this.total)
+        ? this.clickNext()
+        : this.saveResult();
     },
-    saveResult: async function(){
+    saveResult: async function() {
       await ResultsModel.save(this.name, this.score);
-      router.push('/endgame');
-    },
+      router.push("/endgame");
+    }
   }
 };
 </script>
@@ -98,6 +111,11 @@ export default {
 
 .show-pokemon {
   height: 120px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 .right-answer {

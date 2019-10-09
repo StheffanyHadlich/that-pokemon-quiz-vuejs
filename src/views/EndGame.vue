@@ -16,7 +16,7 @@
             <p>
               <strong>Score: {{score}} out of {{total}} questions</strong>
             </p>
-            <p></p>
+            <p>{{results}}</p>
             <div>
               <b-button pill variant="warning" @click="redirectToHome">Play again</b-button>
             </div>
@@ -33,10 +33,13 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "endgame",
   computed: {
-    ...mapGetters(["score", "total"])
+    ...mapGetters(["score", "total", "results"])
+  },
+  created: async function() {
+    await this.getResults();
   },
   methods: {
-    ...mapActions(["redirectToHome"])
+    ...mapActions(["redirectToHome", "getResults"])
   }
 };
 </script>

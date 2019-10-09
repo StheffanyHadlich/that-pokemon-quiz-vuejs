@@ -5,5 +5,6 @@ export default {
   UPDATE_SCORE: 'updateScore',
   ON_CHANGE: 'onChange',
   REDIRECT_TO_HOME: 'redirectToHome',
-  RESET_STORE: 'resetStore'
+  RESET_STORE: 'resetStore',
+  SET_RESULTS: 'setResults'
 }

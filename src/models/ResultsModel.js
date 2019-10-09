@@ -1,7 +1,8 @@
 import * as ResultsService from '../service/ResultsService';
 
 export const getAll = async () => {
-  return await ResultsService.getResults();
+  const results = await ResultsService.getResults();
+  return formatResults(results);
 }
 
 export const save = async (name, score) => {
@@ -15,4 +16,13 @@ export const mountResult = (name, score) => {
     name: name,
     score: score
   }
+}
+
+const formatResults = (results) => {
+  const items = results.splice(-3).reverse();
+  return items.map(item => {
+    return (
+      { name: item.name, score: item.score }
+    )
+  })
 }

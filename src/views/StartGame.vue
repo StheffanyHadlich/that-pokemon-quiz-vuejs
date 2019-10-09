@@ -42,5 +42,9 @@ export default {
   .logo {
     height: 100px;
   }
+
+  .btn {
+    margin: 10px 0px;
+  }
 </style>
  

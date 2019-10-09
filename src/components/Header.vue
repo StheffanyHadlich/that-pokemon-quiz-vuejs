@@ -1,6 +1,9 @@
 <template>
   <div class="header">
-    <b-jumbotron lead="Player name">
+    <b-jumbotron>
+      <h4>
+        <b-badge variant="warning" >Player: {{name}}</b-badge>
+      </h4>
       <h4>
         <b-badge variant="success" >Score: {{score}}</b-badge>
       </h4>
@@ -14,6 +17,7 @@
 <script>
 export default {
   props: {
+    name: String,
     score: Number,
     index: Number,
     total: Number

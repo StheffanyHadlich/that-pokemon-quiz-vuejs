@@ -10,13 +10,15 @@
 
             <hr class="my-4" />
             <p>
-              <strong>Name: Player name</strong>
+              <strong>Name: {{name}}</strong>
             </p>
             <p></p>
             <p>
               <strong>Score: {{score}} out of {{total}} questions</strong>
             </p>
-            <p>{{results}}</p>
+            <div class="results">
+              <b-table striped hover :items="results"></b-table>
+            </div>
             <div>
               <b-button pill variant="warning" @click="redirectToHome">Play again</b-button>
             </div>
@@ -33,14 +35,20 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "endgame",
   computed: {
-    ...mapGetters(["score", "total", "results"])
+    ...mapGetters(["score", "total", "results", "name"])
   },
   created: async function() {
     await this.getResults();
   },
   methods: {
-    ...mapActions(["redirectToHome", "getResults"])
+    ...mapActions(["redirectToHome", "getResults"]),
   }
 };
 </script>
+
+<style>
+  .results {
+    background-color: white;
+  }
+</style>
  

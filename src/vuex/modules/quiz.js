@@ -3,6 +3,8 @@ import router from '../../router';
 
 const initialState = {
   questions: [],
+  results: [],
+  name: 'Ash',
   index: 0,
   score: 0,
   selected: "",
@@ -20,12 +22,8 @@ const mutations = {
     state.show = !state.show;
   },
   [mutationstypes.UPDATE_INDEX](state) {
-    if (state.index < state.total - 1) {
-      state.isCorrect = null
-      return state.index++
-    } else {
-      router.push('/endgame');
-    }
+    state.isCorrect = null;
+    return state.index++;
   },
   [mutationstypes.UPDATE_SCORE](state) {
     if (state.questions[state.index].rightAnswer.name == state.selected) {
@@ -44,11 +42,16 @@ const mutations = {
     Object.keys(initialState).forEach(key => {
       state[key] = initialState[key]
     });
+  },
+  [mutationstypes.SET_RESULTS](state, data) {
+    state.results = data;
   }
 };
 
 const state = {
   questions: [],
+  results: [],
+  name: 'Ash',
   index: 0,
   score: 0,
   selected: "",

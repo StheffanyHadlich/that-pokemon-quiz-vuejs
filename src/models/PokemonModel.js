@@ -22,7 +22,6 @@ const mountQuestion = async pokemons => {
     rightAnswer: await pickAnswer(pokemons),
     options: pokemons.map(item => item.name)
   }
-
 }
 
 const pickAnswer = async pokemons => {
@@ -30,7 +29,6 @@ const pickAnswer = async pokemons => {
   const pokemon = await getPokemon(pokemons[index].url);
   return mountRightAnswer(pokemon, pokemons[index].name);
 }
-
 
 const separateQuestion = results => chunk(results, NUMBER_OF_QUESTIONS);
 
@@ -40,9 +38,9 @@ const mountRightAnswer = (pokemon, name) => {
     img: isThatPikachu(name) || pokemon.sprites.front_default
   }
 }
+export const isLastIndex = (current, total) => current < total - 1
 
 const isThatPikachu = name => name === 'pikachu' ? PIKAPERICLES.img : false
-
 
 const PIKAPERICLES = {
   name: 'Pikapericles',

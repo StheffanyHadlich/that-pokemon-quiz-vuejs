@@ -5,8 +5,13 @@
         <h3>Who's That Pokémon?</h3>
 
         <div class="quiz-img">
-          <b-spinner v-if="loading" type="grow" class="loading"  label="Spinning"></b-spinner>
-          <img alt="Pokemon" v-else :src="rightAnswer.img" :class="show? 'show-pokemon' : 'hide-pokemon'" />
+          <b-spinner v-if="loading" type="grow" class="loading" label="Spinning"></b-spinner>
+          <img
+            alt="Pokemon"
+            v-else
+            :src="rightAnswer.img"
+            :class="show? 'show-pokemon' : 'hide-pokemon'"
+          />
         </div>
       </div>
       <hr class="my-4" />
@@ -26,28 +31,42 @@
         </b-form-group>
       </div>
       <b-button right-align pill variant="success" href="#" :disabled="show" @click="checkAnswer">Ok</b-button>
-      <b-button right-align pill variant="info" href="#" :disabled="!show" @click="clickNext">Next</b-button>
+      <b-button right-align pill variant="info" href="#" :disabled="!show" @click="onClick">Next</b-button>
     </b-jumbotron>
   </div>
 </template>
 
 <script>
+import * as PokemonModel from '../models/PokemonModel'
 export default {
   props: {
     rightAnswer: Object,
     options: Array,
-    score: Number,
     checkAnswer: Function,
     show: Boolean,
+    name: String,
+    score: Number,
+    index: Number,
+    total: Number,
     isCorrect: Boolean,
     loading: Boolean,
     onChange: Function,
-    clickNext: Function
+    clickNext: Function,
+    saveResult: Function
   },
   methods: {
     isSelected: function(value) {
       return this.rightAnswer.name === value;
-    }
+    },
+    onClick: function() {
+      return PokemonModel.isLastIndex(this.index, this.total) ? this.clickNext() : this.saveResult(this.userData())
+    },
+    userData: function() {
+        return {
+          name: this.name,
+          score:this.score
+        }
+      }
   }
 };
 </script>

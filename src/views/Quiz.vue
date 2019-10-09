@@ -12,12 +12,16 @@
             :options="questions[index].options"
             :rightAnswer="questions[index].rightAnswer"
             :score="score"
+            :index="index"
+            :total="total"
+            :name="name"
             :show="show"
             :isCorrect="isCorrect"
             :checkAnswer="checkAnswer"
             :onChange="onChange"
             :clickNext="clickNext"
             :loading="loading"
+            :saveResult="saveResult"
           />
         </b-col>
       </b-row>
@@ -45,6 +49,7 @@ export default {
   computed: {
     ...mapGetters([
       "questions",
+      "name",
       "index",
       "score",
       "selected",
@@ -58,7 +63,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    ...mapActions(["getPokemons", "checkAnswer", "clickNext", "onChange"])
+    ...mapActions(["getPokemons", "checkAnswer", "clickNext", "onChange", "saveResult"])
   }
 };
 </script>

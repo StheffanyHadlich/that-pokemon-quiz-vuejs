@@ -1,6 +1,8 @@
-import * as PokemonModel from '../models/PokemonModel'
+import * as PokemonModel from '../models/PokemonModel';
+import * as ResultsModel from '../models/ResultsModel';
 
 import mutations from './mutation-types';
+import router from '../router';
 
 export const getPokemons = async ({ commit }) => {
   const questions = await PokemonModel.getPokemons();
@@ -12,8 +14,13 @@ export const checkAnswer = ({commit}) => {
   commit(mutations.TOGGLE_ANSWER);
 }
 
-export const clickNext = ({commit}) => {
-  commit(mutations.UPDATE_INDEX);
+export const saveResult = async ({commit}, {name, score}) => {
+  await ResultsModel.save(name, score);
+  router.push('/endgame');
+}
+
+export const clickNext  = async ({commit}) => {
+  commit(mutations.UPDATE_INDEX)
   commit(mutations.TOGGLE_ANSWER);
 }
 
@@ -26,3 +33,7 @@ export const redirectToHome = async ({commit}) => {
   commit(mutations.REDIRECT_TO_HOME);
 }
 
+export const getResults = async ({commit}) => {
+  const results = await ResultsModel.getAll();
+  commit(mutations.SET_RESULTS, results);
+}

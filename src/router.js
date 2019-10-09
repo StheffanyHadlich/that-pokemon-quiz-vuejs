@@ -1,5 +1,6 @@
 import EndGame from './views/EndGame'
 import Quiz from './views/Quiz';
+import StartGame from './views/StartGame'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -10,7 +11,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/quiz'
+      component: StartGame
     },
     {
       path: '/quiz',

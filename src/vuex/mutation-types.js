@@ -6,5 +6,6 @@ export default {
   ON_CHANGE: 'onChange',
   REDIRECT_TO_HOME: 'redirectToHome',
   RESET_STORE: 'resetStore',
-  SET_RESULTS: 'setResults'
+  SET_RESULTS: 'setResults',
+  SET_NAME: 'setName'
 }

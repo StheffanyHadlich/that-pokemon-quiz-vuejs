@@ -1,29 +1,29 @@
-# that-pokemon-quiz
+# That pokémon quiz
+
+This project is that pokémon quiz, you know? from tv. It get its info from [pokeapi.co](https://pokeapi.co) and builds a quiz! 
+![](https://i.imgur.com/jwHZsM9.png)
+
+If you want to answer this quiz you can go to ``https://that-pokemon-quiz.herokuapp.com/``
 
 ## Project setup
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
+npm run build
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Contribuing
+Feel free to report issues and contribute to this project :)

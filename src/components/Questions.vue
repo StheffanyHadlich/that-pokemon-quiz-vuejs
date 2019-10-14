@@ -2,7 +2,7 @@
   <div>
     <b-jumbotron class="quiz-container">
       <div>
-        <h3>Who's That Pokémon?</h3>
+        <h3>{{t("Who's That Pokémon?")}}</h3>
 
         <div class="quiz-img">
           <b-spinner v-if="loading" type="grow" class="loading" label="Spinning"></b-spinner>
@@ -23,9 +23,9 @@
             @change="onChange"
             name="pokemon-options"
             :value="option"
-            :class="[ 
-              isSelected(option) && show && isCorrect ? 'right-answer' :  
-              isSelected(option) && show && !isCorrect ? 'wrong-answer' : '' 
+            :class="[
+              isSelected(option) && show && isCorrect ? 'right-answer' :
+              isSelected(option) && show && !isCorrect ? 'wrong-answer' : ''
             ]"
           >{{option}}</b-form-radio>
         </b-form-group>
@@ -39,9 +39,9 @@
           :disabled="show"
           @click="checkAnswer"
         >
-          Ok
+          {{t('Ok')}}
         </b-button>
-        <b-button right-align pill variant="info" href="#" :disabled="!show" @click="onClick">Next</b-button>
+        <b-button right-align pill variant="info" href="#" :disabled="!show" @click="onClick">{{t('Next')}}</b-button>
       </div>
     </b-jumbotron>
   </div>

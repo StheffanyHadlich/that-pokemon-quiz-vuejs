@@ -8,10 +8,12 @@
 
             <hr class="my-4" />
             <div>
-              <b-form-input :value="name" @input="setName" placeholder="Enter your name"></b-form-input>
+              <b-form-input :value="name" @input="setName" :placeholder="t('enter your name')"></b-form-input>
             </div>
             <div>
-              <b-button pill variant="danger" @click="startGame">Start</b-button>
+              <b-button pill variant="danger" @click="startGame">
+                {{t('start')}}
+              </b-button>
             </div>
           </b-jumbotron>
         </b-col>
@@ -47,4 +49,3 @@ export default {
     margin: 10px 0px;
   }
 </style>
- 

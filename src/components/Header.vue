@@ -2,13 +2,13 @@
   <div class="header">
     <b-jumbotron>
       <h4>
-        <b-badge variant="warning" >Player: {{name}}</b-badge>
+        <b-badge variant="warning" >{{t('player')}}: {{name}}</b-badge>
       </h4>
       <h4>
-        <b-badge variant="success" >Score: {{score}}</b-badge>
+        <b-badge variant="success" >{{t('score')}}: {{score}}</b-badge>
       </h4>
       <h4>
-        <b-badge variant="info">Questions: {{index | convertIndex }} / {{total}}</b-badge>
+        <b-badge variant="info">{{t('Questions')}}: {{index | convertIndex }} / {{total}}</b-badge>
       </h4>
     </b-jumbotron>
   </div>

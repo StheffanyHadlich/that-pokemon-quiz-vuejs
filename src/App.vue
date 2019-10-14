@@ -7,6 +7,9 @@
 <script>
 export default {
   name: "app",
+  mounted(){
+    this.$translate.setLang('pt-BR');
+  }
 };
 </script>
 

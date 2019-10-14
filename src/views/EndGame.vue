@@ -5,22 +5,22 @@
         <b-col sm="6" offset="3">
           <b-jumbotron bg-variant="info" text-variant="white">
             <h2>
-              <strong>Game over</strong>
+              <strong>{{t('game over')}}</strong>
             </h2>
 
             <hr class="my-4" />
             <p>
-              <strong>Name: {{name}}</strong>
+              <strong>{{t('name')}}: {{name}}</strong>
             </p>
             <p></p>
             <p>
-              <strong>Score: {{score}} out of {{total}} questions</strong>
+              <strong>{{`${t('score')}: ${score} ${t('out of')} ${total} ${t('questions')}`}}</strong>
             </p>
             <div class="results">
               <b-table striped hover :items="results"></b-table>
             </div>
             <div>
-              <b-button pill variant="warning" @click="redirectToHome">Play again</b-button>
+              <b-button pill variant="warning" @click="redirectToHome">{{t('play again')}}</b-button>
             </div>
           </b-jumbotron>
         </b-col>
@@ -51,4 +51,3 @@ export default {
     background-color: white;
   }
 </style>
- 
